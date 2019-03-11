@@ -86,7 +86,7 @@ namespace :sidekiq do
 
   # ### sidekiq:quiet
   desc "Quiet sidekiq (stop accepting new work)"
-  task :quiet => :remote_environment do
+  task :quiet do
     comment 'Quiet sidekiq (stop accepting new work)'
     in_path(fetch(:current_path)) do
       for_each_process do |pid_file, idx|
@@ -103,7 +103,7 @@ namespace :sidekiq do
 
   # ### sidekiq:stop
   desc "Stop sidekiq"
-  task :stop => :remote_environment do
+  task :stop do
     comment 'Stop sidekiq'
     in_path(fetch(:current_path)) do
       for_each_process do |pid_file, idx|
@@ -120,7 +120,7 @@ namespace :sidekiq do
 
   # ### sidekiq:start
   desc "Start sidekiq"
-  task :start => :remote_environment do
+  task :start do
     comment 'Start sidekiq'
     in_path(fetch(:current_path)) do
       for_each_process do |pid_file, idx|
@@ -144,7 +144,7 @@ namespace :sidekiq do
   end
 
   desc "Tail log from server"
-  task :log => :remote_environment do
+  task :log do
     command %[tail -f #{fetch(:sidekiq_log)}]
   end
 end
